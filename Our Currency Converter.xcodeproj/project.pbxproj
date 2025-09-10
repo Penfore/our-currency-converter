@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		51B130432E71E61A002072D4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 51B130402E71E61A002072D4 /* LICENSE */; };
+		51B130442E71E61A002072D4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 51B130412E71E61A002072D4 /* README.md */; };
+		51B130452E71E61A002072D4 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 51B1303E2E71E61A002072D4 /* CHANGELOG.md */; };
+		51B130462E71E61A002072D4 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 51B1303F2E71E61A002072D4 /* CONTRIBUTING.md */; };
+		51B130472E71E61A002072D4 /* SECURITY.md in Resources */ = {isa = PBXBuildFile; fileRef = 51B130422E71E61A002072D4 /* SECURITY.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		51692DF22E71B1FA0014C359 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +35,11 @@
 		51692DE42E71B1F80014C359 /* Our Currency Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Our Currency Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51692DF12E71B1FA0014C359 /* Our Currency ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Our Currency ConverterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51692DFB2E71B1FA0014C359 /* Our Currency ConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Our Currency ConverterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51B1303E2E71E61A002072D4 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		51B1303F2E71E61A002072D4 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		51B130402E71E61A002072D4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		51B130412E71E61A002072D4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		51B130422E71E61A002072D4 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +88,11 @@
 		51692DDB2E71B1F80014C359 = {
 			isa = PBXGroup;
 			children = (
+				51B1303E2E71E61A002072D4 /* CHANGELOG.md */,
+				51B1303F2E71E61A002072D4 /* CONTRIBUTING.md */,
+				51B130402E71E61A002072D4 /* LICENSE */,
+				51B130412E71E61A002072D4 /* README.md */,
+				51B130422E71E61A002072D4 /* SECURITY.md */,
 				51692DE62E71B1F80014C359 /* Our Currency Converter */,
 				51692DF42E71B1FA0014C359 /* Our Currency ConverterTests */,
 				51692DFE2E71B1FA0014C359 /* Our Currency ConverterUITests */,
@@ -212,6 +230,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B130432E71E61A002072D4 /* LICENSE in Resources */,
+				51B130442E71E61A002072D4 /* README.md in Resources */,
+				51B130452E71E61A002072D4 /* CHANGELOG.md in Resources */,
+				51B130462E71E61A002072D4 /* CONTRIBUTING.md in Resources */,
+				51B130472E71E61A002072D4 /* SECURITY.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +420,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Our Currency Converter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -406,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.sertiva.Our-Currency-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -424,6 +449,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Our Currency Converter";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -433,7 +460,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.sertiva.Our-Currency-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
