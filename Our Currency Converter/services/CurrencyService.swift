@@ -8,7 +8,7 @@
 import Foundation
 
 class CurrencyService: CurrencyServiceProtocol {
-    private let apiKey = "API KEY"
+    private let apiKey = "NO-API-YET-WILL-CREATE-KEY-AND-MANAGE-LATER"
     
     func fetchRates() async throws -> [String: Double] {
         let url = URL(string: "https://v6.exchangerate-api.com/v6/\(apiKey)/latest/BRL")!
