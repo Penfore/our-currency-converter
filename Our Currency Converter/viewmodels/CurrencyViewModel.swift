@@ -14,6 +14,7 @@ class CurrencyViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var lastUpdateTime: Date? = nil
     @Published var isUsingFallbackRates: Bool = false
+    @Published var historyManager = HistoryManager()
     
     private let fallbackRates: [String: Double] = [
         "USD": 0.19,
@@ -106,5 +107,47 @@ class CurrencyViewModel: ObservableObject {
         guard let lastUpdate = lastUpdateTime else { return true }
         let oneHourAgo = Date().addingTimeInterval(-3600)
         return lastUpdate < oneHourAgo
+    }
+    
+    func convertCurrency(
+        amount: Double,
+        fromCurrency: String,
+        toCurrency: String
+    ) -> Double {
+        var convertedAmout: Double
+        var exchangeRate: Double
+        
+        if fromCurrency == "BRL" && toCurrency != "BRL" {
+            convertedAmout = convertFromBRL(amount: amount, to: toCurrency)
+            exchangeRate = rates[toCurrency] ?? 0.0
+        } else if fromCurrency != "BRL" && toCurrency == "BRL" {
+            convertedAmout = convertToBRL(amount: amount, from: fromCurrency)
+            exchangeRate = 1.0 / (rates[fromCurrency] ?? 1.0)
+        } else if fromCurrency == "BRL" && toCurrency == "BRL" {
+            convertedAmout = amount
+            exchangeRate = 1.0
+        } else {
+            let amountInBRL = convertToBRL(amount: amount, from: fromCurrency)
+            convertedAmout = convertFromBRL(amount: amountInBRL, to: toCurrency)
+            
+            let fromRate = rates[fromCurrency] ?? 1.0
+            let toRate = rates[toCurrency] ?? 1.0
+            exchangeRate = toRate / fromRate
+        }
+        
+        let historyEntry = ConversionHistory(
+            fromAmount: amount,
+            fromCurrency: fromCurrency,
+            toAmount: convertedAmout,
+            toCurrency: toCurrency,
+            exchangeRate: exchangeRate
+        )
+        historyManager.addConversion(historyEntry)
+        
+        return convertedAmout
+    }
+    
+    func clearConversionHistory() {
+        historyManager.clearHistory()
     }
 }
