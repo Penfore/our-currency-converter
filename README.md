@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-  <h3>💰 Convert Brazilian Real to major currencies with real-time rates</h3>
+  <h3>💰 Convert currencies with real-time rates and persistent history</h3>
   <p>A clean, efficient and reliable currency converter app built with SwiftUI following MVVM architecture principles.</p>
 </div>
 
@@ -20,23 +20,27 @@
 
 ### 🚀 **Current Features**
 - 💱 **Real-time Conversion** - Convert BRL to USD, EUR, GBP, JPY and more
+- 📊 **Conversion History** - Track all your conversions with persistent storage
 - 🔄 **Live Exchange Rates** - Fetches current rates from ExchangeRate-API
 - 📱 **Native iOS Experience** - Built with SwiftUI for optimal performance
 - 🛡️ **Offline Fallback** - Works even when API is unavailable with fixed rates
-- 💾 **Persistent Selection** - Remembers your preferred currency choice
+- 💾 **Persistent Data** - Remembers your conversion history and preferences
+- 🔐 **Secure Configuration** - API keys stored securely outside source code
+- 🎯 **Loading States** - Real-time feedback with visual indicators
+- 📲 **Tab Navigation** - Clean interface with conversion and history tabs
 - 🧪 **Fully Tested** - Comprehensive unit tests with mocks
 
 ### 📋 **Planned Features**
 - 🌍 **Multi-currency Base** - Convert from any currency to any currency
-- 📊 **Historical Rates** - View exchange rate trends and charts
+- 📈 **Historical Rate Charts** - View exchange rate trends over time
 - ⏰ **Rate Alerts** - Get notified when rates reach your target
 - 🎨 **Themes** - Light and dark mode support
 - 🌐 **More Currencies** - Support for cryptocurrency and exotic currencies
-- 📈 **Widgets** - Home screen widgets for quick conversions
+- 📱 **Widgets** - Home screen widgets for quick conversions
 
 ## 📱 Screenshots
 
-*Screenshots will be added soon. The app features a clean, minimalist interface with a text field for BRL input, currency picker, and instant conversion results.*
+*Screenshots will be added soon. The app features a clean, minimalist interface with tab navigation between conversion and history screens.*
 
 ## 🏗️ Architecture
 
@@ -46,20 +50,26 @@ This project follows **MVVM (Model-View-ViewModel)** architecture, ensuring:
 - **Testability** - Easy to unit test business logic with dependency injection
 - **Maintainability** - Clean, organized code that's easy to modify and extend
 - **Protocol-Oriented Design** - Uses protocols for better abstraction and testing
+- **Secure Configuration** - External API key management for production safety
 
 ### Project Structure
 
 ```
 Our Currency Converter/
 ├── models/                   # Data models
-│   └── ExchangeRateResponse.swift
+│   ├── ConversionHistory.swift    # History data model
+│   └── ExchangeRateSwift.swift   # Exchange rate response model
 ├── services/                 # Network and business logic
+│   ├── ConfigManager.swift       # Secure configuration management
+│   ├── HistoryManager.swift      # Conversion history management
 │   ├── CurrencyServiceProtocol.swift
-│   └── CurrencyService.swift
+│   └── CurrencyService.swift     # API service with secure key handling
 ├── viewmodels/              # ViewModels (business logic)
-│   └── CurrencyViewModel.swift
-├── Views/                   # SwiftUI Views
-│   ├── ContentView.swift
+│   └── CurrencyViewModel.swift   # Enhanced with history integration
+├── views/                   # SwiftUI Views
+│   ├── ContentView.swift         # Tab navigation container
+│   ├── CurrencyView.swift        # Main conversion interface
+│   ├── HistoryView.swift          # Conversion history display
 │   └── Our_Currency_ConverterApp.swift
 └── Assets.xcassets/         # App assets
 
@@ -75,7 +85,8 @@ Tests/
 - **Language**: Swift 5.9+
 - **Architecture**: MVVM
 - **Networking**: URLSession with async/await
-- **Persistence**: UserDefaults (@AppStorage)
+- **Persistence**: UserDefaults with JSON encoding
+- **Security**: External API key configuration
 - **Testing**: XCTest with async testing support
 - **API**: [ExchangeRate-API](https://exchangerate-api.com/)
 
@@ -94,7 +105,7 @@ Before you begin, ensure you have:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/our-currency-converter.git
+   git clone https://github.com/Penfore/our-currency-converter.git
    cd our-currency-converter
    ```
 
@@ -103,11 +114,26 @@ Before you begin, ensure you have:
    open "Our Currency Converter.xcodeproj"
    ```
 
-3. **Configure API Key**
-   - Get a free API key from [ExchangeRate-API](https://exchangerate-api.com/)
-   - Replace `"API KEY"` in `CurrencyService.swift` with your actual key
+3. **Configure API Key** (Required for live rates)
+   
+   Create an `APIKeys.plist` file in the project root:
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+   <plist version="1.0">
+   <dict>
+       <key>ExchangeRateAPIKey</key>
+       <string>YOUR-API-KEY-HERE</string>
+   </dict>
+   </plist>
+   ```
 
-4. **Build and Run**
+4. **Add APIKeys.plist to Xcode**
+   - Drag the file into your Xcode project
+   - **Uncheck** "Add to target" to keep it local only
+   - The file is already in `.gitignore` for security
+
+5. **Build and Run**
    - Select your target device/simulator
    - Press `Cmd+R` or click the Run button
 
@@ -115,14 +141,12 @@ Before you begin, ensure you have:
 
 To use live exchange rates:
 
-1. Sign up at [ExchangeRate-API](https://exchangerate-api.com/) (free tier: 1,500 requests/month)
-2. Get your API key
-3. Replace the placeholder in `services/CurrencyService.swift`:
-   ```swift
-   private let apiKey = "YOUR_ACTUAL_API_KEY_HERE"
-   ```
+1. **Sign up** at [ExchangeRate-API](https://exchangerate-api.com/) (free tier: 1,500 requests/month)
+2. **Get your API key** from the dashboard
+3. **Create** `APIKeys.plist` as shown above with your real API key
+4. **The app will automatically** load your key securely
 
-*Note: The app includes fallback rates, so it works even without an API key.*
+*Note: The app includes fallback rates and works without an API key, but with limited currency support.*
 
 ## 🧪 Testing
 
@@ -140,6 +164,7 @@ xcodebuild test -scheme "Our Currency Converter" -destination "platform=iOS Simu
 
 - **Services**: Full coverage with success/failure scenarios
 - **ViewModels**: Comprehensive testing with mock dependencies
+- **History Management**: Complete CRUD operations testing
 - **Error Handling**: Tests for network failures and fallback behavior
 
 ### Testing Architecture
@@ -167,8 +192,22 @@ protocol CurrencyServiceProtocol {
 class CurrencyViewModel: ObservableObject {
     @Published var rates: [String: Double]
     @Published var errorMessage: String?
+    @Published var historyManager = HistoryManager()
     
     func loadRates() async
+    func convertCurrency(amount: Double, fromCurrency: String, toCurrency: String) -> Double
+    func clearConversionHistory()
+}
+```
+
+### HistoryManager
+
+```swift
+class HistoryManager: ObservableObject {
+    @Published var conversions: [ConversionHistory] = []
+    
+    func addConversion(_ conversion: ConversionHistory)
+    func clearHistory()
 }
 ```
 
@@ -235,7 +274,8 @@ This project is built by humans, for humans, with AI as a helpful companion in o
 
 - **No Personal Data**: The app doesn't collect or store personal information
 - **Network Requests**: Only makes requests to ExchangeRate-API for currency data
-- **Local Storage**: Only stores user's preferred currency selection locally
+- **Local Storage**: Stores conversion history and preferences locally on device
+- **Secure API Keys**: API keys stored in external configuration files (not in source code)
 - **Open Source**: All code is public and auditable
 
 For security reports, please see our [Security Policy](SECURITY.md).
@@ -260,16 +300,16 @@ See also the list of [contributors](https://github.com/Penfore/our-currency-conv
 
 - Exchange rates provided by [ExchangeRate-API](https://exchangerate-api.com/)
 - Built with [SwiftUI](https://developer.apple.com/xcode/swiftui/) by Apple
-- Inspired by the need for a simple, reliable currency converter
+- Inspired by the need for a simple, reliable currency converter with history tracking
 - Thanks to all [contributors](https://github.com/Penfore/our-currency-converter/contributors)
 
 ## 📈 Project Stats
 
 <div align="center">
-  <img src="https://img.shields.io/github/stars/yourusername/our-currency-converter?style=social" alt="GitHub stars" />
-  <img src="https://img.shields.io/github/forks/yourusername/our-currency-converter?style=social" alt="GitHub forks" />
-  <img src="https://img.shields.io/github/issues/yourusername/our-currency-converter" alt="GitHub issues" />
-  <img src="https://img.shields.io/github/issues-pr/yourusername/our-currency-converter" alt="GitHub pull requests" />
+  <img src="https://img.shields.io/github/stars/Penfore/our-currency-converter?style=social" alt="GitHub stars" />
+  <img src="https://img.shields.io/github/forks/Penfore/our-currency-converter?style=social" alt="GitHub forks" />
+  <img src="https://img.shields.io/github/issues/Penfore/our-currency-converter" alt="GitHub issues" />
+  <img src="https://img.shields.io/github/issues-pr/Penfore/our-currency-converter" alt="GitHub pull requests" />
 </div>
 
 ---
