@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = CurrencyViewModel()
+    @EnvironmentObject var themeManager: ThemeManager
 
     var body: some View {
         TabView {
@@ -23,6 +24,12 @@ struct ContentView: View {
                     Image(systemName: "clock.fill")
                     Text("Histórico")
                 }
+            
+            SettingsView(themeManager: themeManager)
+                .tabItem {
+                    Image(systemName: "gear.circle.fill")
+                    Text("Configurações")
+                }
         }
         .accentColor(.blue)
     }
@@ -30,4 +37,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(ThemeManager())
 }
