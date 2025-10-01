@@ -27,14 +27,15 @@
 - 💾 **Persistent Data** - Remembers your conversion history and preferences
 - 🔐 **Secure Configuration** - API keys stored securely outside source code
 - 🎯 **Loading States** - Real-time feedback with visual indicators
-- 📲 **Tab Navigation** - Clean interface with conversion and history tabs
+- 📲 **Tab Navigation** - Clean interface with conversion, history, and settings tabs
+- 🎨 **Theme Support** - Light, dark, and system theme options with persistent selection
+- ⚙️ **Settings Screen** - Centralized configuration with theme selection and app info
 - 🧪 **Fully Tested** - Comprehensive unit tests with mocks
 
 ### 📋 **Planned Features**
 - 🌍 **Multi-currency Base** - Convert from any currency to any currency
 - 📈 **Historical Rate Charts** - View exchange rate trends over time
 - ⏰ **Rate Alerts** - Get notified when rates reach your target
-- 🎨 **Themes** - Light and dark mode support
 - 🌐 **More Currencies** - Support for cryptocurrency and exotic currencies
 - 📱 **Widgets** - Home screen widgets for quick conversions
 
